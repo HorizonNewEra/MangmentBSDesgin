@@ -8,18 +8,15 @@
     <br />
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <p><strong>الموقع :</strong> {{ buildingdetails.location }}</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <p><strong> عدد الشقق :</strong> {{ buildingdetails.flatCount }}</p>
             </div>
         </div>
 <br />
         <div class="row">
-            <!-- <div class="col-md-3">
-                <p><strong>Flat Count:</strong> {{ buildingdetails.flatCount }}</p>
-            </div> -->
             <div class="col-md-4">
                 <p><strong>المساحه:</strong> {{ buildingdetails.size }}</p>
             </div>
@@ -78,7 +75,8 @@
                                <i class="fa-solid fa-eye"></i> عرض العقد </button></td>
                         <td><button class="btn btn-info" [routerLink]="['/flatdetails',flat.id]"><i class="fa-solid fa-circle-info"></i> تفاصيل</button></td>
                         <td><button class="btn btn-warning " [routerLink]="['/editflat',buildingid,flat.id]"><i class="fa-regular fa-pen-to-square"></i> تعديل</button></td>
-                        <td><button class="btn btn-secondary" [routerLink]="['/sellflat',flat.id]"><i class="fa-solid fa-sack-dollar"></i>  بيع </button></td>
+                        <td *ngIf="flat.clientName==='لا يوجد عميل'"><button class="btn btn-secondary" [routerLink]="['/sellflat',flat.id]"><i class="fa-solid fa-sack-dollar"></i>  بيع </button></td>
+                        <td *ngIf="flat.clientName!=='لا يوجد عميل'">تم البيع</td>
                     </tr>
                 </tbody>
             </table>

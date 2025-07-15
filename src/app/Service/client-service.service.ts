@@ -2,7 +2,7 @@ import { ClientEditComponent } from './../components/client/client-edit/client-e
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ClientDetails, ClientEditAdd, Clienttable, Clienttableview } from '../Interfaces/client-interfaces';
+import { ClientDetails, ClientEditAddData, Clienttable, Clienttableview } from '../Interfaces/client-interfaces';
 import { TableViewParams } from '../Interfaces/helpers';
 
 @Injectable({
@@ -28,10 +28,13 @@ export class ClientServiceService {
   GetClientDetails(id: string): Observable<ClientDetails> {
     return this._HttpClient.get<ClientDetails>(`${this.BaseUrl}/api/Client/ClientDetailsView/${id}`, { headers: this.header });
   }
-  ClientEdit(data: ClientEditAdd): Observable<any> {
+  GetAllClientsData(): Observable<ClientEditAddData[]> {
+    return this._HttpClient.get<ClientEditAddData[]>(`${this.BaseUrl}/api/Client/GetAllClientsData`, { headers: this.header });
+  }
+  ClientEdit(data: ClientEditAddData): Observable<any> {
     return this._HttpClient.post(`${this.BaseUrl}/api/Client/EditClient`, data, { headers: this.header });
   }
-  ClientAdd(data: ClientEditAdd): Observable<any> {
+  ClientAdd(data: ClientEditAddData): Observable<any> {
     return this._HttpClient.post(`${this.BaseUrl}/api/Client/AddClient`, data, { headers: this.header });
   }
 }

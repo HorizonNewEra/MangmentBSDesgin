@@ -38,10 +38,9 @@ export interface clientflats {
   sellingPrice: number,
   flatContractImages: string[]
 }
-export interface ClientEditAdd {
+export interface ClientEditAddData {
   id: string,
   name: string,
   phoneNumber: string,
   address: string
 }
-

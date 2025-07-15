@@ -21,6 +21,7 @@ import { AgendaComponent } from './components/agenda/agenda.component';
 import { ClientDetailsComponent } from './components/client/client-details/client-details.component';
 import { ClientAddComponent } from './components/client/client-add/client-add.component';
 import { ClientEditComponent } from './components/client/client-edit/client-edit.component';
+import { SellFlatComponent } from './payment/sell-flat/sell-flat.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -35,12 +36,13 @@ const routes: Routes = [
   {path: 'editflat/:bid/:id',canActivate:[authGuard], component: FlatEditComponent, title: 'Edit Flat'},
   {path: 'installmentdetails/:id',canActivate:[authGuard], component: InstallmentDetailsComponent, title: 'Installment Details'},
   {path: 'addbuilding',canActivate:[authGuard], component: BuildingAddComponent, title: 'Add Building'},
-  {path: 'paymentdetails/:id',canActivate:[authGuard], component: PaymentDetailsComponent, title: 'PaymentDetails'},
+  {path: 'paymentdetails/:id',canActivate:[authGuard], component: PaymentDetailsComponent, title: 'Payment Details'},
   {path: 'payment',canActivate:[authGuard], component: PaymentTableComponent, title: 'Payment'},
   {path: 'client',canActivate:[authGuard], component: ClientTableComponent, title: 'Client'},
-  {path: 'clientdetails/:id',canActivate:[authGuard], component: ClientDetailsComponent, title: 'Client-details'},
-  {path: 'clientadd/:id',canActivate:[authGuard], component: ClientAddComponent, title: 'Client-Add'},
-  {path: 'clientedit/:id',canActivate:[authGuard], component: ClientEditComponent, title: 'Client-Edit'},
+  {path: 'clientdetails/:id',canActivate:[authGuard], component: ClientDetailsComponent, title: 'Client Details'},
+  {path: 'clientadd/:id',canActivate:[authGuard], component: ClientAddComponent, title: 'Add Client'},
+  {path: 'clientedit/:id',canActivate:[authGuard], component: ClientEditComponent, title: 'Edit Client'},
+  {path: 'sellflat/:id',canActivate:[authGuard], component: SellFlatComponent, title: 'Sell Flat'},
   {path: 'user',canActivate:[authGuard], component: UsersTableComponent, title: 'Users'},
   {path: '**', component: NotfoundComponent, title: 'NotFound'}
 ];

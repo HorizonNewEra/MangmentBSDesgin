@@ -2,7 +2,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientServiceService } from 'src/app/Service/client-service.service';
-import { ClientEditAdd } from 'src/app/Interfaces/client-interfaces';
+import { ClientEditAddData } from 'src/app/Interfaces/client-interfaces';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class ClientEditComponent {
       phoneNumber: new FormControl(null, [Validators.maxLength(11), Validators.minLength(11)]),
       address: new FormControl(null, [Validators.maxLength(700), Validators.minLength(10)]),
     });
-    editclientformdata: ClientEditAdd =undefined!;
+    editclientformdata: ClientEditAddData =undefined!;
     constructor(private _ActivatedRoute: ActivatedRoute,private _AuthService: ClientServiceService, private _Router: Router) { 
   this._ActivatedRoute.params.subscribe((prams)=>{this.editclientformdata.id=prams['id']})
     }

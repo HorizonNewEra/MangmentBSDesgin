@@ -1,1 +1,88 @@
-<p>sell-flat works!</p>
+<div class="row my-4 ">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <h1 class="text-center"> إضافه مبني</h1>
+        <div *ngIf="apierror" class="alert alert-danger p-0 mt-1">
+            <p class="m-0 p-1">{{apierror}}</p>
+        </div>
+        <form [formGroup]="sellflatform" (ngSubmit)="Sellflat(sellflatform)">
+            <div class="my-2">
+                <label for="clientId">الرقم القومي للعميل</label>
+                <input formControlName="clientId" type="text" id="clientId" name="clientId" class="form-control" maxlength="14" required>
+                <div *ngIf="sellflatform.get('clientId')?.touched && sellflatform.get('clientId')?.errors"
+                    class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="sellflatform.get('clientId')?.errors?.['required']">client Id Name is required </p>
+                    <p class="m-0 p-1" *ngIf="sellflatform.get('clientId')?.errors?.['maxlength']">client Id Name must be 14 characters </p>
+                    <p class="m-0 p-1" *ngIf="sellflatform.get('clientId')?.errors?.['minlength']">client Id Name must be 14 characters </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="paymentMethod">طريقة الدفع</label>
+                <input formControlName="paymentMethod" type="text" id="paymentMethod" name="paymentMethod" class="form-control" maxlength="100" required>
+                <div *ngIf="sellflatform.get('paymentMethod')?.touched && sellflatform.get('paymentMethod')?.errors"
+                    class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="sellflatform.get('paymentMethod')?.errors?.['required']">paymentMethod is required </p>
+                    <p class="m-0 p-1" *ngIf="sellflatform.get('paymentMethod')?.errors?.['maxlength']">paymentMethod must be less than 100 characters </p>
+                    <p class="m-0 p-1" *ngIf="sellflatform.get('paymentMethod')?.errors?.['minlength']">paymentMethod must be more than 3 characters </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="startPrice">مقدم العقد</label>
+                <input formControlName="startPrice" type="number" id="startPrice" name="startPrice" class="form-control" required>
+                <div *ngIf="sellflatform.get('startPrice')?.touched && sellflatform.get('startPrice')?.errors" class="alert alert-danger p-0 mt-1">
+                <p class="m-0 p-1" *ngIf="sellflatform.get('startPrice')?.errors?.['required']">start Price is required </p>
+                <p class="m-0 p-1" *ngIf="sellflatform.get('startPrice')?.errors?.['min']">start Price must be more than 1 LE </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="fullPrice">قيمه العقد</label>
+                <input formControlName="fullPrice" type="number" id="fullPrice" name="fullPrice" class="form-control" required>
+                <div *ngIf="sellflatform.get('fullPrice')?.touched && sellflatform.get('fullPrice')?.errors" class="alert alert-danger p-0 mt-1">
+                <p class="m-0 p-1" *ngIf="sellflatform.get('fullPrice')?.errors?.['required']">full Price is required </p>
+                <p class="m-0 p-1" *ngIf="sellflatform.get('fullPrice')?.errors?.['min']">full Price must be more than 1 LE </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="fullMonths">مدة التقسيط</label>
+                <input formControlName="fullMonths" type="number" id="fullMonths" name="fullMonths" class="form-control" required>
+                <div *ngIf="sellflatform.get('fullMonths')?.touched && sellflatform.get('fullMonths')?.errors" class="alert alert-danger p-0 mt-1">
+                <p class="m-0 p-1" *ngIf="sellflatform.get('fullMonths')?.errors?.['required']">full Months is required </p>
+                <p class="m-0 p-1" *ngIf="sellflatform.get('fullMonths')?.errors?.['min']">full Months must be more than 1 Month </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="monthlyPrice">قيمة القسط</label>
+                <input formControlName="monthlyPrice" type="number" id="monthlyPrice" name="monthlyPrice" class="form-control" required>
+                <div *ngIf="sellflatform.get('monthlyPrice')?.touched && sellflatform.get('monthlyPrice')?.errors" class="alert alert-danger p-0 mt-1">
+                <p class="m-0 p-1" *ngIf="sellflatform.get('monthlyPrice')?.errors?.['required']">monthly Price is required </p>
+                <p class="m-0 p-1" *ngIf="sellflatform.get('monthlyPrice')?.errors?.['min']">monthly Price must be more than 1 LE </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="collectingDate">تاريخ السداد</label>
+                <input formControlName="collectingDate" type="date" id="collectingDate" name="collectingDate" class="form-control" required>
+                <div *ngIf="sellflatform.get('collectingDate')?.touched && sellflatform.get('collectingDate')?.errors" class="alert alert-danger p-0 mt-1">
+                <p class="m-0 p-1" *ngIf="sellflatform.get('collectingDate')?.errors?.['required']">collecting Date is required </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="everyManyMonth">فترة السداد</label>
+                <input formControlName="everyManyMonth" type="number" id="everyManyMonth" name="everyManyMonth" class="form-control" required>
+                <div *ngIf="sellflatform.get('everyManyMonth')?.touched && sellflatform.get('everyManyMonth')?.errors" class="alert alert-danger p-0 mt-1">
+                <p class="m-0 p-1" *ngIf="sellflatform.get('everyManyMonth')?.errors?.['required']">collecting Date is required </p>
+                <p class="m-0 p-1" *ngIf="sellflatform.get('everyManyMonth')?.errors?.['min']">collecting Date must be at least 1 Month </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="description">الوصف</label>
+                <textarea formControlName="description" id="description" name="description" class="form-control"
+                    rows="3"></textarea>
+            </div>
+            <button [disabled]="sellflatform.invalid || isloading" class="bg-main btn text-white ms-auto mt-3 d-block">
+                <span *ngIf="!isloading">بيع</span>
+                <i *ngIf="isloading" class="fas fa-spinner fa-spin ms-2"></i>
+            </button>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>

@@ -1,3 +1,4 @@
+import { SellFlat } from './flat-interfaces';
 export interface HomeTableView {
     perviousInstallments: HomeInstallmentView[];
     currentInstallments: HomeInstallmentView[];
@@ -94,4 +95,16 @@ export interface AgendaDayDetailsView {
     dueDateString: string;
     paiedDateString?: null | string;
     isPaied: boolean;
+}
+export interface SellFlatView {
+    id: number;
+    clientId:string;
+    paymentMethod:string;
+    description:string;
+    startPrice: number;
+    fullPrice: number;
+    fullMonths: number;
+    monthlyPrice: number;
+    collectingDate:string;
+    everyManyMonth: number;
 }
