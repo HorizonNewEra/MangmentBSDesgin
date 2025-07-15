@@ -1,0 +1,33 @@
+<div class="row my-4 ">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+   
+    <div *ngIf="apierror" class="alert alert-danger p-0 mt-1">
+        <p class="m-0 p-1">{{apierror}}</p>
+    </div>
+    <form [formGroup]="loginform" (ngSubmit)="submitlogin(loginform)" class="box">
+         <h1 class="text-center"> تسجيل الدخول </h1>
+        <div class="my-2">
+           <h3> <label for="userName">اسم المستخدم </label></h3>
+            <input formControlName="userName" type="text" id="userName" name="userName" class="form-control" required>
+            <div class="alert alert-danger p-0 mt-1" *ngIf="loginform.get('userName')?.touched && loginform.get('userName')?.errors">
+            <p class="m-0 p-1" *ngIf="loginform.get('userName')?.errors?.['required']">user Name is required </p>
+            <p class="m-0 p-1" *ngIf="loginform.get('userName')?.errors?.['minlength']">user Name min length is 6 </p>
+            </div>
+        </div>
+        <div class="my-2">
+           <h3> <label for="password">كلمة المرور</label></h3>
+            <input formControlName="password" type="password" id="password" name="password" class="form-control" required>
+            <div class="alert alert-danger p-0 mt-1" *ngIf="loginform.get('password')?.touched && loginform.get('password')?.errors">
+            <p class="m-0 p-1" *ngIf="loginform.get('password')?.errors?.['required']">password is required </p>
+            <p class="m-0 p-1" *ngIf="loginform.get('password')?.errors?.['pattern']">password must start with a capital letter, must contain letters and numbers only ,its min lenth is 6, its max length is 16</p>
+            </div>
+        </div>
+        <button [disabled]="loginform.invalid" class="bg-main btn text-white ms-auto mt-3 d-block w-100">
+        <h4><span *ngIf="!isloading"> تسجيل الدخول </span></h4>
+        <i *ngIf="isloading" class="fas fa-spinner fa-spin ms-2"></i>
+    </button>
+    </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>

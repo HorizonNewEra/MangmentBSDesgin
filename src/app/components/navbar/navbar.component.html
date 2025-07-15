@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" dir="rtl">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/home"><img src="assets/Logo.png" alt=""></a>
+        <h3 class="my-4" style="color: #ffee00"> الفتاح العليم للتطوير العقاري</h3>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a *ngIf="islogin" class="nav-link" [routerLink]="['/home']"
+                        [routerLinkActive]="['navitems']">الصفحه الرئيسيه</a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="islogin" class="nav-link" [routerLink]="['/agenda']"
+                        [routerLinkActive]="['navitems']"> الأجندة </a>
+                </li>
+                <li *ngIf="islogin" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/building']" 
+                        [routerLinkActive]="['navitems']">العقارات</a>
+                </li>
+                <li *ngIf="islogin" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/client']"
+                        [routerLinkActive]="['navitems']">العملاء</a>
+                </li>
+                <!-- <li *ngIf="islogin" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user']"
+                        [routerLinkActive]="['navitems']">الموظفين</a>
+                </li> -->
+                 <li *ngIf="islogin" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/payment']"
+                        [routerLinkActive]="['navitems']">الاقساط</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li *ngIf="!islogin" class="nav-item">
+                    <a class="nav-link " [routerLink]="['/register']"
+                        [routerLinkActive]="['navitems']"> إنشاء حساب </a>
+                </li>
+                <li *ngIf="!islogin" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/login']"
+                        [routerLinkActive]="['navitems']" style="color: #fff;"> تسجيل دخول </a>
+                </li>
+                <li *ngIf="islogin" class="nav-item">
+                    <a class="nav-link cursor-pointer" (click)="_AuthService.logout()" style="color: #fff;"> تسجيل خروج </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

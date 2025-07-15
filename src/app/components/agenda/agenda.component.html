@@ -1,0 +1,71 @@
+<div *ngIf="isloding"
+    class="loadingscreen position-fixed z-3 top-0 bottom-0 start-0 end-0 bg-white d-flex justify-content-center align-items-center">
+    <span class="loader"></span>
+</div>
+ <h2 class="text-center my-3"> أجندة لشهر : {{agendaView?.monthName}}</h2>
+<div class="row">
+    <div class="col-md-4">
+        <select class="form-select" (change)="onMonthSelected($event)" aria-label="Default select example">
+            <option selected value=""> اختر الشهر </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <select class="form-select" (change)="onYearSelected($event)" aria-label="Default select example">
+            <option selected value=""> اختر السنه</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2030</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-secondary" (click)="getAgenda()">عرض </button>
+    </div>
+</div>
+    <div *ngIf="apierror" class="alert alert-danger my-4">{{ apierror }}</div>
+<div class="my-4" *ngIf="agendaDayView.length>0">
+   
+    <br>
+    <table class="table table-striped table-bordered text-center">
+        <thead>
+            <tr>
+                <th> اليوم </th>
+                <th> اسم العميل</th>
+                <th> رقم الموبايل</th>
+                <th>القيمه</th>
+                <th> تاريخ الدفع</th>
+                <th> تفاصيل</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let day of agendaDayView">
+            <tr *ngFor="let install of day.dayDetails">
+                <td>{{ day.dateString }}</td>
+                <td>{{ install.clientName }}</td>
+                <td>{{ install.clientPhone }}</td>
+                <td>{{ install.amount }}</td>
+                <td *ngIf="install.paiedDateString!==null">{{ install.paiedDateString}}</td>
+                <td *ngIf="install.paiedDateString===null">لم يتم الدفع</td>
+                <td><button class="btn btn-info" [routerLink]="['/installmentdetails',install.installmentId]"><i
+                            class="fa-solid fa-circle-info"></i> تفاصيل </button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="my-4" *ngIf="agendaDayView.length===0">
+    <h3 class="text-center bg-info"> لا توجد بيانات</h3>
+</div>

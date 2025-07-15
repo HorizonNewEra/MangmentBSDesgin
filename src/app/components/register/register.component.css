@@ -1,0 +1,22 @@
+.box{
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom ,#00032E, #376ac9);
+    color: #ffffff;
+    box-shadow: 0 4px 8px #0000001a;
+    transition: box-shadow 0.3s ease;
+}
+
+
+input{
+    background-color: #b4e5e9;
+    opacity: .5;
+}
+
+.body{
+    background-color:  #00000080;
+
+}

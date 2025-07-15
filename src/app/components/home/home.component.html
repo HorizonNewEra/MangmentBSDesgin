@@ -1,0 +1,74 @@
+<!-- <h2 class="text-center my-3">الأجندة</h2> -->
+<br>
+<br>
+<div class="row text-center justify-content-center">
+    <div class="col-md-4">
+        <div class="bgblue">
+            <div class="card">
+                <p>الإجمالي</p>
+                <p>{{homeTableView?.totalFees}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="bgblue">
+            <div class="card">
+                <p>المستلم</p>
+                <p>{{homeTableView?.totalResived}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="bgblue">
+            <div class="card">
+                <p>المتبقي</p>
+                <p>{{homeTableView?.totalRest}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table *ngIf="homeTableView?.perviousInstallments || homeTableView?.currentInstallments || homeTableView?.nextInstallments" class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>اليوم</th>
+                        <th> اسم العميل</th>
+                        <th> رقم الموبايل </th>
+                        <th>عنوان العميل </th>
+                        <th>الكميه</th>
+                        <th>تفاصيل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let installment of homeTableView?.perviousInstallments" class="table-danger">
+                        <td>{{ installment.installmentDateString }}</td>
+                        <td>{{ installment.name }}</td>
+                        <td>{{ installment.phone }}</td>
+                        <td>{{ installment.address }}</td>
+                        <td>{{ installment.installmentAmount }}</td>
+                        <td><button class="btn btn-info" [routerLink]="['/installmentdetails',installment.id]"><i class="fa-solid fa-circle-info"></i> تفاصيل</button></td>
+                    </tr>
+                    <tr *ngFor="let installment of homeTableView?.currentInstallments" class="table-warning">
+                        <td>{{ installment.installmentDateString }}</td>
+                        <td>{{ installment.name }}</td>
+                        <td>{{ installment.phone }}</td>
+                        <td>{{ installment.address }}</td>
+                        <td>{{ installment.installmentAmount }}</td>
+                        <td><button class="btn btn-info" [routerLink]="['/installmentdetails',installment.id]"><i class="fa-solid fa-circle-info"></i> تفاصيل</button></td>
+                    </tr>
+                    <tr *ngFor="let installment of homeTableView?.nextInstallments" class="table-success">
+                        <td>{{ installment.installmentDateString }}</td>
+                        <td>{{ installment.name }}</td>
+                        <td>{{ installment.phone }}</td>
+                        <td>{{ installment.address }}</td>
+                        <td>{{ installment.installmentAmount }}</td>
+                        <td><button class="btn btn-info" [routerLink]="['/installmentdetails',installment.id]"><i class="fa-solid fa-circle-info"></i> تفاصيل </button></td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</div>

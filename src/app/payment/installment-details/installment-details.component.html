@@ -1,0 +1,67 @@
+<div *ngIf="isloding"
+    class="loadingscreen position-fixed z-3 top-0 bottom-0 start-0 end-0 bg-white d-flex justify-content-center align-items-center">
+    <span class="loader"></span>
+</div>
+<div *ngIf="apierror" class="alert alert-danger">{{ apierror }}</div>
+<div *ngIf="installmentdetails">
+    <br />
+    <div class="bordered">
+    <h3 class="text-center"><a [routerLink]="['/paymentdetails', installmentdetails.paymentId]"><strong>الاقساط</strong></a></h3>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <p><strong>قيمه القسط :</strong> {{ installmentdetails.amount }}</p>
+        </div>
+        <div class="col-md-4">
+            <p><strong> تاريخ الاستحقاق:</strong> {{ installmentdetails.dueDateString }}</p>
+        </div>
+        <div class="col-md-4" *ngIf="installmentdetails.isPaid">
+            <p><strong class="bg-true p-1 rounded"> تاريخ الدفع: {{ installmentdetails.paidDateString }}</strong></p>
+        </div>
+        <div class="col-md-4" *ngIf="!installmentdetails.isPaid">
+            <p><strong class="bg-false p-1 rounded">لم يتم الدفع </strong></p>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+                <p><strong> قيمه العقد:</strong> {{ installmentdetails.sellingPrice }}</p>
+          </div>
+    </div>
+    </div>
+    
+        <div class="bordered">
+            <h3 class="text-center"><a [routerLink]="['/clientdetails', installmentdetails.clientId]">  تفاصيل العميل</a></h3>
+            <br />
+            <div class="row">
+            <div class="col-md-4">
+                <p><strong> الاسم :</strong> {{ installmentdetails.clientName }}</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong> الموبايل :</strong> {{ installmentdetails.clientPhone }}</p>
+            </div>
+             <div class="col-md-4">
+                <p><strong> العنوان :</strong> {{ installmentdetails.clientAddress }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="bordered">
+        <h3 class="text-center"><a [routerLink]="['/flatdetails', installmentdetails.flatId]">  تفاصيل الشقه</a></h3>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <a [routerLink]="['/buildingdetails', installmentdetails.buildingId]"><p><strong>اسم المبني :</strong> {{ installmentdetails.buildingName }}</p></a>
+            </div>
+            <div class="col-md-8">
+                <p><strong> عنوان المبني :</strong> {{ installmentdetails.buildingLocation }}</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong> رقم الشقق:</strong> {{ installmentdetails.flatNumber }}</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong> الطابق :</strong> {{ installmentdetails.floor }}</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>مساحه الشقه:</strong> {{ installmentdetails.flatSize }}</p>
+            </div>
+        </div>
+    </div>
+</div>

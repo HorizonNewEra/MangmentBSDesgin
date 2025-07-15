@@ -1,0 +1,32 @@
+<div class="row my-4 ">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <h1 class="text-center">Edit building</h1>
+        <div *ngIf="apierror" class="alert alert-danger p-0 mt-1">
+            <p class="m-0 p-1">{{apierror}}</p>
+        </div>
+        <form [formGroup]="editbuildingform" (ngSubmit)="editbuilding(editbuildingform)">
+            <div class="my-2">
+                <label for="name">Building Name</label>
+                <input formControlName="name" type="text" id="name" name="name" class="form-control" maxlength="100">
+                <div *ngIf="editbuildingform.get('name')?.touched && editbuildingform.get('name')?.errors" class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="editbuildingform.get('name')?.errors?.['maxlength']">Building Name must be less than 100 characters </p>
+                    <p class="m-0 p-1" *ngIf="editbuildingform.get('name')?.errors?.['minlength']">Building Name must be more than 3 characters </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="location">Location</label>
+                <input formControlName="location" type="text" id="location" name="location" class="form-control" maxlength="300">
+                <div *ngIf="editbuildingform.get('location')?.touched && editbuildingform.get('location')?.errors" class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="editbuildingform.get('location')?.errors?.['maxlength']">Location must be less than 300 characters </p>
+                    <p class="m-0 p-1" *ngIf="editbuildingform.get('location')?.errors?.['minlength']">Location must be more than 3 characters </p>
+                </div>
+            </div>
+            <button [disabled]="editbuildingform.invalid" class="bg-main btn text-white ms-auto mt-3 d-block">
+                <span *ngIf="!isloading">Edit</span>
+                <i *ngIf="isloading" class="fas fa-spinner fa-spin ms-2"></i>
+            </button>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>

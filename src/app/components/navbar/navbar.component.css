@@ -1,0 +1,14 @@
+img{
+    width: 70px !important;
+    height: auto !important;
+    border-radius: 10% !important;
+}
+
+.navbar {
+    background-color: #00032E !important;
+    color: #ffffff;
+}
+a{
+    color: #ffffff !important;
+    font-size: 27px;
+}

@@ -1,0 +1,40 @@
+<div *ngIf="isloding"
+    class="loadingscreen position-fixed z-3 top-0 bottom-0 start-0 end-0 bg-white d-flex justify-content-center align-items-center">
+    <span class="loader"></span>
+</div>
+<br />
+<h2 class="text-center my-4"> العملاء </h2>
+
+<div class="container">
+    <button class="btn btn-info" [routerLink]="['/clientadd']"><i class="fa-solid fa-house-medical"></i> إضافة عميل
+    </button>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th> الرقم القومي </th>
+                        <th> الاسم </th>
+                        <th>رقم الموبايل </th>
+                        <th> عدد الشقه </th>
+                        <th> تعديل </th>
+                        <th> تفاصيل </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let client of clientdata; let i = index">
+                        <td>{{ client.id }}</td>
+                        <td>{{ client.name }}</td>
+                        <td>{{ client.phoneNumber }}</td>
+                        <td>{{ client.flatCount }}</td>
+                         <td><button class="btn btn-warning " [routerLink]="['/clientedit',client.id]"><i class="fa-regular fa-pen-to-square"></i> تعديل </button></td>
+                        <td><button class="btn btn-info" [routerLink]="['/clientdetails',client.id]"><i
+                                    class="fa-solid fa-circle-info"></i> تفاصيل </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+<div *ngIf="isloding"
+    class="loadingscreen position-fixed z-3 top-0 bottom-0 start-0 end-0 bg-white d-flex justify-content-center align-items-center">
+    <span class="loader"></span>
+</div>
+<div *ngIf="apierror" class="alert alert-danger">{{ apierror }}</div>
+<div *ngIf="flatdetails">
+    <br />
+    <div class="row bordered">
+    <h3><a [routerLink]="['/buildingdetails', flatdetails.buildingId]"><strong> اسم المبني :</strong> {{
+        flatdetails.buildingName }}</a></h3>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <p><strong> رقم الشقه:</strong> {{ flatdetails.flatNumber }}</p>
+        </div>
+        <div class="col-md-3">
+            <p><strong>الطابق:</strong> {{ flatdetails.floor }}</p>
+        </div>
+        <div class="col-md-3">
+            <p><strong>المساحه :</strong> {{ flatdetails.size }}</p>
+        </div>
+        <div class="col-md-3">
+            <p><strong> السعر المبدئي :</strong> {{ flatdetails.standerdPrice }}</p>
+        </div>
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <i class="fa-solid fa-eye"></i> عرض عقد الملكيه
+                </button>
+            </div>
+    </div>
+    </div>
+    <div class="row bordered">
+        <div class="row">
+            <h3><a [routerLink]="['/clientdetails', flatdetails.clientId]">  تفاصيل العميل</a></h3>
+            <div class="col-md-6">
+                <p><strong> الاسم :</strong> {{ flatdetails.clientName }}</p>
+            </div>
+            <div class="col-md-6" *ngIf="flatdetails.clientId">
+                <p><strong> الموبايل :</strong> {{ flatdetails.clientPhone }}</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!flatdetails.isSold" class="row alert alert-info">
+        <div class="col-md-12">
+            <h4>لم يتم البيع بعد</h4>
+        </div>
+    </div>
+    <div class="row bordered" *ngIf="flatdetails.isSold">
+        <h3><a [routerLink]="['/paymentdetails', flatdetails.paymentId]">  تفاصيل الأقساط </a></h3>
+        <div class="row">
+            <div class="col-md-3">
+                <p><strong> سعر البيع :</strong> {{ flatdetails.sellingPrice }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong>طريقه الدفع:</strong> {{ flatdetails.paymentMethod }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>الوصف :</strong> {{ flatdetails.description }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong>مقدم العقد:</strong> {{ flatdetails.startPrice }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong> إجمالي العقد :</strong> {{ flatdetails.fullPrice }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong>عدد الأقساط :</strong> {{ flatdetails.fullMonths }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong>عدد الأقساط المتبقية:</strong> {{ flatdetails.restMonths }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong> قيمه القسط :</strong> {{ flatdetails.monthlyPrice }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong>يوم التحصيل:</strong> {{ flatdetails.collectingDay }}</p>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row" *ngIf="flatdetails.isSold">
+        <div class="col-md-12">
+            <h3 >الأقساط </h3>
+            <br />
+            <table class="table table-striped table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>الكميه</th>
+                        <th> تاريخ الاستحقاق</th>
+                        <th>تاريخ الدفع  </th>
+                        <th>تفاصيل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let installment of installments; let i = index">
+                        <td>{{ installment.amount }}</td>
+                        <td>{{ installment.dueDateString }}</td>
+                        <td *ngIf="!installment.isPaid" ><strong class="bg-false p-1 rounded">لم يتم الدفع</strong></td>
+                        <td *ngIf="installment.isPaid">{{ installment.paidDateString }}</td>
+                        <td><button class="btn btn-info" [routerLink]="['/installmentdetails',installment.id]"><i
+                                    class="fa-solid fa-circle-info"></i> تفاصيل </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">  عرض العقد </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div *ngFor="let Contract of contractImages">
+                    <img [src]="Contract" class="img-fluid mb-3" alt="Contract Image">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">غلق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+    <div class="row my-4">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+    
+    <div *ngIf="apierror" class="alert alert-danger p-0 mt-1">
+        <p class="m-0 p-1">{{apierror}}</p>
+    </div>
+    <form [formGroup]="registerform" (ngSubmit)="submitRegister(registerform)"    class="box">
+        <h1 class="text-center">إنشاء حساب </h1>
+        <div class="my-2">
+           <h3>  <label for="id">الرقم القومي </label></h3>
+            <input formControlName="id" type="text" id="id" name="id" class="form-control" maxlength="14" required>
+            <div *ngIf="registerform.get('id')?.touched && registerform.get('id')?.errors" class="alert alert-danger p-0 mt-1">
+            <p class="m-0 p-1" *ngIf="registerform.get('id')?.errors?.['required']">Serial Number is required </p>
+            <p class="m-0 p-1" *ngIf="registerform.get('id')?.errors?.['pattern']">Serial Number must be 14 number </p>
+            </div>
+        </div>
+        <div class="my-2">
+           <h3>  <label for="userName">اسم المستخدم </label></h3>
+            <input formControlName="userName" type="text" id="userName" name="userName" class="form-control" required>
+            <div class="alert alert-danger p-0 mt-1" *ngIf="registerform.get('userName')?.touched && registerform.get('userName')?.errors">
+            <p class="m-0 p-1" *ngIf="registerform.get('userName')?.errors?.['required']">user Name is required </p>
+            <p class="m-0 p-1" *ngIf="registerform.get('userName')?.errors?.['minlength']">user Name min length is 6 </p>
+            </div>
+        </div>
+        <div class="my-2">
+            <h3> <label for="password"> كلمه المرور</label></h3>
+            <input formControlName="password" type="password" id="password" name="password" class="form-control" required>
+            <div class="alert alert-danger p-0 mt-1" *ngIf="registerform.get('password')?.touched && registerform.get('password')?.errors">
+            <p class="m-0 p-1" *ngIf="registerform.get('password')?.errors?.['required']">password is required </p>
+            <p class="m-0 p-1" *ngIf="registerform.get('password')?.errors?.['pattern']">password must start with a capital letter, must contain letters and numbers only ,its min lenth is 6, its max length is 16</p>
+            </div>
+        </div>
+        <div class="my-2">
+            <h3> <label for="email">البريد الالكتروني</label></h3>
+            <input formControlName="email" type="email" id="email" name="email" class="form-control" required>
+            <div class="alert alert-danger p-0 mt-1" *ngIf="registerform.get('email')?.touched && registerform.get('email')?.errors">
+            <p class="m-0 p-1" *ngIf="registerform.get('email')?.errors?.['required']">email is required </p>
+            <p class="m-0 p-1" *ngIf="registerform.get('email')?.errors?.['email']">enter a valid email </p>
+            </div>
+        </div>
+        <div class="my-2">
+            <h3> <label for="phoneNumber">رقم الهاتف  </label></h3>
+            <input formControlName="phoneNumber" type="tel" id="phoneNumber" name="phoneNumber" class="form-control" required>
+            <div class="alert alert-danger p-0 mt-1" *ngIf="registerform.get('phoneNumber')?.touched && registerform.get('phoneNumber')?.errors">
+            <p class="m-0 p-1" *ngIf="registerform.get('phoneNumber')?.errors?.['required']">phone Number is required </p>
+            <p class="m-0 p-1" *ngIf="registerform.get('phoneNumber')?.errors?.['pattern']">enter a valid egyption number</p>
+            </div>
+        </div>
+        <div class="my-2">
+            <h3> <label for="address">العنوان</label></h3>
+            <input formControlName="address" type="text" id="address" name="address" class="form-control" required>
+            <div class="alert alert-danger p-0 mt-1" *ngIf="registerform.get('address')?.touched && registerform.get('address')?.errors">
+            <p class="m-0 p-1" *ngIf="registerform.get('address')?.errors?.['required']">address is required </p>
+            <p class="m-0 p-1" *ngIf="registerform.get('address')?.errors?.['minlength']">address min length is 6 </p>
+            </div>
+        </div>
+        <button [disabled]="registerform.invalid" class="bg-main btn text-white ms-auto mt-3 d-block w-100">
+       <h4>  <span *ngIf="!isloading"> حفظ </span></h4>
+        <i *ngIf="isloading" class="fas fa-spinner fa-spin ms-2"></i>
+    </button>
+    </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>

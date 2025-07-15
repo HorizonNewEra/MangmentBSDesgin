@@ -1,0 +1,102 @@
+<!-- <div *ngIf="isloding"
+    class="loadingscreen position-fixed z-3 top-0 bottom-0 start-0 end-0 bg-white d-flex justify-content-center align-items-center">
+    <span class="loader"></span>
+</div>
+<div *ngIf="apierror" class="alert alert-danger">{{ apierror }}</div> -->
+<div *ngIf="paymentdetails">
+    <br />
+
+
+    <div class="row bordered">
+        <h3> تفاصيل الدفع </h3>
+        <div class="row">
+            <div class="col-md-3">
+                <p><strong> قيمه العقد :</strong> {{ paymentdetails.fullPrice }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong> مقدم العقد:</strong> {{ paymentdetails.startPrice }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>طريقه الدفع :</strong> {{ paymentdetails.paymentMethod }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong> تفاصيل :</strong> {{ paymentdetails.paymentDescription }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong> إجمالي الاقساط :</strong> {{ paymentdetails.fullInstallment }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong>باقي الأقساط :</strong> {{ paymentdetails.restInstallment }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong>قيمه القسط :</strong> {{ paymentdetails.installmentPrice }}</p>
+            </div>
+            <div class="col-md-3">
+                <p><strong>يوم التحصيل:</strong> {{ paymentdetails.collectingDay }}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bordered">
+        <h3><a [routerLink]="['/clientdetails', paymentdetails.clientId]"> تفاصيل العميل </a></h3>
+        <div class="row">
+            <div class="col-md-4">
+                <p><strong> الاسم :</strong> {{ paymentdetails.clientName }}</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong> الموبايل :</strong> {{ paymentdetails.clientPhone }}</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong> العنوان :</strong> {{ paymentdetails.clientAddress }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bordered">
+        <h3><a [routerLink]="['/buildingdetails', paymentdetails.buildingId]"><strong> اسم المبني :</strong> {{
+                paymentdetails.buildingName }}</a></h3>
+        <br />
+
+        <div class="row">
+            <div class="col-md-6">
+                <a [routerLink]="['/flatdetails', paymentdetails.flatId]">
+                    <p><strong> رقم الشقه:</strong> {{ paymentdetails.flatNumber }}</p>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <p><strong> عنوان المبني :</strong> {{ paymentdetails.buildingLocation }}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <h3>الأقساط </h3>
+            <br />
+            <table class="table table-striped table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>الكميه </th>
+                        <th> تاريخ الاستحقاق</th>
+                        <th>الدفع</th>
+                        <th>تاريخ الدفع </th>
+                        <th>تفاصيل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let installment of paymentdetails.installments; let i = index">
+                        <td>{{ installment.amount }}</td>
+                        <td>{{ installment.dueDateString }}</td>
+                        <td>{{ installment.isPaid }}</td>
+                        <td>{{ installment.paidDateString }}</td>
+                        <td><button class="btn btn-info" [routerLink]="['/installmentdetails',installment.id]"><i
+                                    class="fa-solid fa-circle-info"></i> تفاصيل </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

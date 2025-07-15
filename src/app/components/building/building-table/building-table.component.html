@@ -1,0 +1,58 @@
+<div *ngIf="isloding" class="loadingscreen position-fixed z-3 top-0 bottom-0 start-0 end-0 bg-white d-flex justify-content-center align-items-center">
+    <span class="loader"></span>
+</div>
+<br />
+<h1 class="text-center my-4"><strong>العقارات</strong></h1>
+
+<div class="container">
+    <button class="btn btn-info" [routerLink]="['/addbuilding']"><i class="fa-solid fa-house-medical"></i> إضافه مبني </button>
+    <br />
+<br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th> اسم المبني</th>
+                        <th> عدد الشقق</th>
+                        <th>الموقع</th>
+                        <th> عقد الملكيه</th>
+                        <th>التفاصيل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let building of buildings; let i = index">
+                        <td>{{ building.name }}</td>
+                        <td>{{ building.flatCount }}</td>
+                        <td>{{ building.location }}</td>
+                        <td><button type="button" (click)="openImage(i)" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">
+                               <i class="fa-solid fa-eye"></i> عرض العقد
+                            </button></td>
+                        <td><button class="btn btn-info" [routerLink]="['/buildingdetails',building.id]"><i class="fa-solid fa-circle-info"></i> تفاصيل </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel"> عقد الملكيه</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div *ngFor="let Contract of contractImages">
+                        <img [src]="Contract" class="img-fluid mb-3" alt="Contract Image">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">غلق </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

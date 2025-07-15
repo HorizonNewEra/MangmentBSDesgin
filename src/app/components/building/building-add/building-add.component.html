@@ -1,0 +1,83 @@
+<div class="row my-4 ">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <h1 class="text-center"> إضافه مبني</h1>
+        <div *ngIf="apierror" class="alert alert-danger p-0 mt-1">
+            <p class="m-0 p-1">{{apierror}}</p>
+        </div>
+        <form [formGroup]="addbuildingform" (ngSubmit)="Addbuilding(addbuildingform)">
+            <div class="my-2">
+                <label for="name"> اسم المبني</label>
+                <input formControlName="name" type="text" id="name" name="name" class="form-control" maxlength="100"
+                    required>
+                <div *ngIf="addbuildingform.get('name')?.touched && addbuildingform.get('name')?.errors"
+                    class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('name')?.errors?.['required']">Building Name is
+                        required </p>
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('name')?.errors?.['maxlength']">Building Name must be
+                        less than 100 characters </p>
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('name')?.errors?.['minlength']">Building Name must be
+                        more than 3 characters </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="location">الموقع</label>
+                <input formControlName="location" type="text" id="location" name="location" class="form-control"
+                    maxlength="300" required>
+                <div *ngIf="addbuildingform.get('location')?.touched && addbuildingform.get('location')?.errors"
+                    class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('location')?.errors?.['required']">Location is
+                        required </p>
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('location')?.errors?.['maxlength']">Location must be
+                        less than 300 characters </p>
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('location')?.errors?.['minlength']">Location must be
+                        more than 3 characters </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="size">المساحه</label>
+                <input formControlName="size" type="number" id="size" name="size" class="form-control" required>
+                <div *ngIf="addbuildingform.get('size')?.touched && addbuildingform.get('size')?.errors"
+                    class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('size')?.errors?.['required']">Size is required </p>
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('size')?.errors?.['min']">Size must be more than 1
+                        Meters </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="landPrice">سعر الأرض </label>
+                <input formControlName="landPrice" type="number" id="landPrice" name="landPrice" class="form-control"
+                    required>
+                <div *ngIf="addbuildingform.get('landPrice')?.touched && addbuildingform.get('landPrice')?.errors"
+                    class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('landPrice')?.errors?.['required']">Land Price is
+                        required </p>
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('landPrice')?.errors?.['min']">Land Price must be more
+                        than 1 Meters </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="constractionFees"> تكاليف البناء </label>
+                <input formControlName="constractionFees" type="number" id="constractionFees" name="constractionFees"
+                    class="form-control" required>
+                <div *ngIf="addbuildingform.get('constractionFees')?.touched && addbuildingform.get('constractionFees')?.errors"
+                    class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('constractionFees')?.errors?.['required']">
+                        Constraction Fees is required </p>
+                    <p class="m-0 p-1" *ngIf="addbuildingform.get('constractionFees')?.errors?.['min']">Constraction
+                        Fees must be more than 1 Meters </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="description">الوصف </label>
+                <textarea formControlName="description" id="description" name="description" class="form-control"
+                    rows="3"></textarea>
+            </div>
+            <button [disabled]="addbuildingform.invalid" class="bg-main btn text-white ms-auto mt-3 d-block">
+                <span *ngIf="!isloading">إضافه</span>
+                <i *ngIf="isloading" class="fas fa-spinner fa-spin ms-2"></i>
+            </button>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>

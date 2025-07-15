@@ -1,0 +1,55 @@
+<div class="row my-4 ">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <h1 class="text-center"> إضافه شقه </h1>
+        <div *ngIf="apierror" class="alert alert-danger p-0 mt-1">
+            <p class="m-0 p-1">{{apierror}}</p>
+        </div>
+        <form [formGroup]="addflatform" (ngSubmit)="Addflat(addflatform)">
+            <div class="my-2">
+                <label for="name"> رقم الشقه </label>
+                <input formControlName="flatNumber" type="text" id="flatNumber" name="flatNumber" class="form-control" maxlength="100"
+                    required>
+                <div *ngIf="addflatform.get('flatNumber')?.touched && addflatform.get('flatNumber')?.errors"
+                    class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="addflatform.get('flatNumber')?.errors?.['required']"> رقم الشقه مطلوب </p>
+                    <p class="m-0 p-1" *ngIf="addflatform.get('flatNumber')?.errors?.['min']"> رقم الشقه يجب أن يكون أكثر من 0 </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="floor">الطابق </label>
+                <input formControlName="floor" type="text" id="floor" name="floor" class="form-control"
+                    maxlength="300" required>
+                <div *ngIf="addflatform.get('floor')?.touched && addflatform.get('floor')?.errors"
+                    class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="addflatform.get('floor')?.errors?.['required']">الطابق مطلوب </p>
+                    <p class="m-0 p-1" *ngIf="addflatform.get('floor')?.errors?.['min']">الطابق يجب أن يكون أكثر من 0 </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="size">المساحه</label>
+                <input formControlName="size" type="number" id="size" name="size" class="form-control" required>
+                <div *ngIf="addflatform.get('size')?.touched && addflatform.get('size')?.errors"
+                    class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="addflatform.get('size')?.errors?.['required']">المساحه مطلوبه </p>
+                    <p class="m-0 p-1" *ngIf="addflatform.get('size')?.errors?.['min']">المساحه يجب أن تكون أكثر من 1 متر مربع </p>
+                </div>
+            </div>
+            <div class="my-2">
+                <label for="standerdPrice"> السعر المبدئي </label>
+                <input formControlName="standerdPrice" type="number" id="standerdPrice" name="standerdPrice" class="form-control"
+                    required>
+                <div *ngIf="addflatform.get('standerdPrice')?.touched && addflatform.get('standerdPrice')?.errors"
+                    class="alert alert-danger p-0 mt-1">
+                    <p class="m-0 p-1" *ngIf="addflatform.get('standerdPrice')?.errors?.['required']"> السعر المبدئي مطلوب </p>
+                    <p class="m-0 p-1" *ngIf="addflatform.get('standerdPrice')?.errors?.['min']"> السعر المبدئي يجب أن يكون أكثر من 1 </p>
+                </div>
+            </div>
+            <button [disabled]="addflatform.invalid" class="bg-main btn text-white ms-auto mt-3 d-block">
+                <span *ngIf="!isloading">إضافه</span>
+                <i *ngIf="isloading" class="fas fa-spinner fa-spin ms-2"></i>
+            </button>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
