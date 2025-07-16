@@ -25,7 +25,6 @@ export class ClientDetailsComponent {
   getbuildingdetails() {
     this.ClientServiceService.GetClientDetails(this.clientId).subscribe({
       next: (response: any) => {
-        console.log(response);
         this.ClientDetails = response;
         this.clientPayments = response.clientPayments;
         this.clientflats=response.clientflats;

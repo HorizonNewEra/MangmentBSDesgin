@@ -26,7 +26,6 @@ export class PaymentDetailsComponent implements OnInit {
   getpayment() {
     this.PaymentServiceService.getPaymentdetails(this.paymentId).subscribe({
       next: (response: Payment) => {
-        console.log(response);
         if (response === null) {
           this.apierror = 'payment not found';
           this.isloding = false;

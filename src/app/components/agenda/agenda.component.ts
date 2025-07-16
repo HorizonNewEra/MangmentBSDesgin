@@ -31,7 +31,6 @@ ngOnInit() {
       next: (response) => {
         this.agendaView = response;
         this.agendaDayView = response.dayView;
-        console.log(this.agendaDayView);
         this.isloding = false;
       },
       error: (err) => {

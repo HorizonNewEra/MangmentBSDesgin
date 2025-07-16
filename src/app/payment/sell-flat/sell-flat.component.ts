@@ -45,23 +45,22 @@ export class SellFlatComponent {
 
     this.isloading = true;
     if (dataform.valid) {
-      console.log(this.sellflatformdata);
       this._Paymentservice.SellFlat(this.sellflatformdata).subscribe({
         next: (response) => {
-          console.log(response);
           if (response.status === 200) {
-            this._Router.navigate(['/paymentdetails', response.paymentId]);
             this.isloading = false;
+            this._Router.navigate(['/payment']);
           } else {
-            this.apierror = "Failed to sell this flat. Please try again.";
+            this.apierror = response.message;
             this.isloading = false;
           }
         },
         error: (err: any) => {
-          console.log(err);
           this.isloading = false;
           this.apierror = err.error.message;
-          //foreach (var item in err) {
+          if (err.error.errors) {
+            this.apierror +='\n'+ Object.values(err.error.errors).flat().join(', ');
+          }
         }
       })
     }

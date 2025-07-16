@@ -32,7 +32,6 @@ export class BuildingDetailsComponent implements OnInit {
                 this.buildingdetails = response;
                 this.flats = response.flats;
                 this.buildingContractImages = response.buildingContractImages;
-                console.log(this.buildingdetails);
                 this.isloding = false;
             },
             error: (err) => {

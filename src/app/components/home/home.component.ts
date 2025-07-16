@@ -12,30 +12,12 @@ export class HomeComponent implements OnInit {
   date:string='';
   constructor(private _PaymentService: PaymentServiceService) { }
   async ngOnInit() {
-    this.getDate();
+    this.getHomeTableView();
   }
- getDate() {
-   this._PaymentService.GetDateTime().subscribe({
-      next: (response) => {
-        this.date= response.date;
-        console.log(response.date);
-        this.getHomeTableView(this.date);
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
-  }
- getHomeTableView(Datey: string) {
-    if (!Datey) {
-      console.error('Date is not set, cannot fetch home table view.');
-      return;
-    }
-    console.log('Fetching home table view for date:', Datey);
-    this._PaymentService.GetHomeTableView(Datey).subscribe({
+ getHomeTableView() {
+    this._PaymentService.GetHomeTableView().subscribe({
       next: (response) => {
         if (response) {
-          console.log(response);
           this.homeTableView = response;
         }
       },

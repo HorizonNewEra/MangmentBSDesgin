@@ -9,15 +9,14 @@ import { TableViewParams } from '../Interfaces/helpers';
   providedIn: 'root'
 })
 export class PaymentServiceService {
-  //BaseUrl: string = 'http://mangmentbs.runasp.net';
-  BaseUrl: string = 'https://localhost:7163';
+  BaseUrl: string = 'http://mangmentbs.runasp.net';
   header = new HttpHeaders({ 'Content-Type': 'application/json', 'accept': '*/*', 'Authorization': `Bearer ${localStorage.getItem('usertoken')}` });
   constructor(private _HttpClient: HttpClient) { }
   GetDateTime(): Observable<any> {
     return this._HttpClient.get<any>(`${this.BaseUrl}/api/Home/GetDateTimeView`, { headers: this.header });
   }
-  GetHomeTableView(date: string): Observable<HomeTableView> {
-    return this._HttpClient.get<HomeTableView>(`${this.BaseUrl}/api/Home/GetHomeDetails`, { headers: this.header, params: { date: date } });
+  GetHomeTableView(): Observable<HomeTableView> {
+    return this._HttpClient.get<HomeTableView>(`${this.BaseUrl}/api/Home/GetHomeDetails`, { headers: this.header });
   }
   getPaymentdetails(PaymentId: number): Observable<Payment> {
     return this._HttpClient.get<Payment>(`${this.BaseUrl}/api/Payment/GetPaymentDetails/${PaymentId}`, { headers: this.header });
