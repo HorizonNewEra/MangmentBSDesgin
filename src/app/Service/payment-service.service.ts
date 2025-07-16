@@ -9,7 +9,8 @@ import { TableViewParams } from '../Interfaces/helpers';
   providedIn: 'root'
 })
 export class PaymentServiceService {
-  BaseUrl: string = 'http://mangmentbs.runasp.net';
+  //BaseUrl: string = 'http://mangmentbs.runasp.net';
+  BaseUrl: string = 'https://localhost:7163';
   header = new HttpHeaders({ 'Content-Type': 'application/json', 'accept': '*/*', 'Authorization': `Bearer ${localStorage.getItem('usertoken')}` });
   constructor(private _HttpClient: HttpClient) { }
   GetDateTime(): Observable<any> {
@@ -37,6 +38,6 @@ export class PaymentServiceService {
     return this._HttpClient.get<AgendaView>(`${this.BaseUrl}/api/Home/GetAgenda`, { headers: this.header,params: { month: month,year:year } });
   }
   SellFlat(data: SellFlatView): Observable<any> {
-    return this._HttpClient.post(`${this.BaseUrl}/api/Payment/SellFlatPayment`, data, { headers: this.header });
+    return this._HttpClient.post<any>(`${this.BaseUrl}/api/Payment/SellFlatPayment`, data, { headers: this.header });
   }
 }

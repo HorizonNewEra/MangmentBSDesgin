@@ -31,6 +31,6 @@ export class BuildingServiceService {
       return this._HttpClient.post(`${this.BaseUrl}/api/Building/AddBuilding`, data, { headers: this.header });
     }
   EditBuilding(data: Editbuilding): Observable<any> {
-      return this._HttpClient.put(`${this.BaseUrl}/api/Building/EditBuilding`, data, { headers: this.header });
+      return this._HttpClient.post(`${this.BaseUrl}/api/Building/EditBuilding`, data, { headers: this.header });
     }
   }

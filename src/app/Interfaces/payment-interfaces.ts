@@ -97,14 +97,14 @@ export interface AgendaDayDetailsView {
     isPaied: boolean;
 }
 export interface SellFlatView {
-    id: number;
     clientId:string;
     paymentMethod:string;
+    collectingDate:string;
     description:string;
+    flatId: number;
     startPrice: number;
     fullPrice: number;
     fullMonths: number;
     monthlyPrice: number;
-    collectingDate:string;
     everyManyMonth: number;
 }
