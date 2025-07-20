@@ -40,7 +40,7 @@ const routes: Routes = [
   {path: 'payment',canActivate:[authGuard], component: PaymentTableComponent, title: 'Payment'},
   {path: 'client',canActivate:[authGuard], component: ClientTableComponent, title: 'Client'},
   {path: 'clientdetails/:id',canActivate:[authGuard], component: ClientDetailsComponent, title: 'Client Details'},
-  {path: 'clientadd/:id',canActivate:[authGuard], component: ClientAddComponent, title: 'Add Client'},
+  {path: 'clientadd',canActivate:[authGuard], component: ClientAddComponent, title: 'Add Client'},
   {path: 'clientedit/:id',canActivate:[authGuard], component: ClientEditComponent, title: 'Edit Client'},
   {path: 'sellflat/:id',canActivate:[authGuard], component: SellFlatComponent, title: 'Sell Flat'},
   {path: 'user',canActivate:[authGuard], component: UsersTableComponent, title: 'Users'},
@@ -48,7 +48,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

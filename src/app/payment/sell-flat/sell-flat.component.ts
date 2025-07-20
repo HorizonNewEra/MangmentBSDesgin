@@ -47,7 +47,7 @@ export class SellFlatComponent {
     if (dataform.valid) {
       this._Paymentservice.SellFlat(this.sellflatformdata).subscribe({
         next: (response) => {
-          if (response.status === 200) {
+          if (response.status === "200") {
             this.isloading = false;
             this._Router.navigate(['/payment']);
           } else {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Clienttable, Clienttableview } from 'src/app/Interfaces/client-interfaces';
 import { TableViewParams } from 'src/app/Interfaces/helpers';
 import { ClientServiceService } from 'src/app/Service/client-service.service';
@@ -8,7 +8,7 @@ import { ClientServiceService } from 'src/app/Service/client-service.service';
   templateUrl: './client-table.component.html',
   styleUrls: ['./client-table.component.css']
 })
-export class ClientTableComponent {
+export class ClientTableComponent implements OnInit {
 
     isloding:boolean= true;
     Clienttableview:Clienttable | undefined
@@ -25,7 +25,8 @@ export class ClientTableComponent {
     }
     getClientTableView() {
       this.ClientService.GetclientTableView(this.view).subscribe({
-        next: (response:any) => {
+        next: (response:Clienttable) => {
+          console.log(response);
           this.Clienttableview = response;
           if (response.data.length > 0) {
             this.clientdata = response.data;

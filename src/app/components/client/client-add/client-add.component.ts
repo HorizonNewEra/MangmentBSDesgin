@@ -13,7 +13,7 @@ export class ClientAddComponent {
 apierror:string='';
     isloading: boolean = false;
   addclientform: FormGroup = new FormGroup({
-      id: new FormControl(null, [Validators.maxLength(14), Validators.minLength(14),Validators.required]),
+      id: new FormControl(null, [Validators.pattern(/^[0-9]{14}$/),Validators.required]),
       name: new FormControl(null, [Validators.maxLength(400), Validators.minLength(3),Validators.required]),
       phoneNumber: new FormControl(null, [Validators.maxLength(11), Validators.minLength(11),Validators.required]),
       address: new FormControl(null, [Validators.maxLength(700), Validators.minLength(10),Validators.required])
