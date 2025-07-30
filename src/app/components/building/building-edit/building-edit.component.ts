@@ -32,7 +32,7 @@ this._ActivatedRoute.params.subscribe((prams)=>{this.editbuildingformdata.id=pra
       if (dataform.valid) {
         this._AuthService.EditBuilding(this.editbuildingformdata).subscribe({
           next: (response) => {
-            if (response.status ===200) {
+            if (response.status ==="200") {
               this._Router.navigate(['/building']);
               this.isloading = false;
             } else {

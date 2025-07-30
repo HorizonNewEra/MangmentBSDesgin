@@ -8,6 +8,7 @@ import { PaymentServiceService } from 'src/app/Service/payment-service.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  isloding:boolean=true;
   homeTableView: HomeTableView | undefined;
   date:string='';
   constructor(private _PaymentService: PaymentServiceService) { }
@@ -17,11 +18,13 @@ export class HomeComponent implements OnInit {
  getHomeTableView() {
     this._PaymentService.GetHomeTableView().subscribe({
       next: (response) => {
+        this.isloding = false;
         if (response) {
           this.homeTableView = response;
         }
       },
       error: (err) => {
+        this.isloding = false;
         console.error(err);
       }
     });

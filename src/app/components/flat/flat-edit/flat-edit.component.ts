@@ -39,7 +39,7 @@ export class FlatEditComponent {
       if (dataform.valid) {
         this._AuthService.EditFlat(this.editflatformdata).subscribe({
           next: (response) => {
-            if (response.status === 200) {
+            if (response.status === "200") {
               this._Router.navigate(['/buildingdetails', this.buildingid]);
               this.isloading = false;
             } else {

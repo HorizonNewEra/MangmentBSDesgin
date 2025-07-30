@@ -36,7 +36,7 @@ apierror: string = '';
       if (dataform.valid) {
         this._AuthService.AddFlat(this.addflatformdata).subscribe({
           next: (response) => {
-            if (response.status === 200) {
+            if (response.status === "200") {
               this._Router.navigate(['/buildingdetails', this.buildingid]);
               this.isloading = false;
             } else {

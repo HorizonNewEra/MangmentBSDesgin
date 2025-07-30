@@ -1,13 +1,13 @@
 <div class="row my-4 ">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-        <h1 class="text-center">Edit Cliet</h1>
+        <h1 class="text-center">إضافة عميل</h1>
         <div *ngIf="apierror" class="alert alert-danger p-0 mt-1">
             <p class="m-0 p-1">{{apierror}}</p>
         </div>
         <form [formGroup]="addclientform" (ngSubmit)="addclient(addclientform)">
             <div class="my-2">
-                <label for="id">Client Name</label>
+                <label for="id">الرقم القومي</label>
                 <input formControlName="id" type="text" id="id" name="id" class="form-control" maxlength="100">
                 <div *ngIf="addclientform.get('id')?.touched && addclientform.get('id')?.errors" class="alert alert-danger p-0 mt-1">
                     <p class="m-0 p-1" *ngIf="addclientform.get('id')?.errors?.['required']">Serial Number is required</p>
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="my-2">
-                <label for="name">Client Name</label>
+                <label for="name">اسم العميل</label>
                 <input formControlName="name" type="text" id="name" name="name" class="form-control" maxlength="100">
                 <div *ngIf="addclientform.get('name')?.touched && addclientform.get('name')?.errors" class="alert alert-danger p-0 mt-1">
                     <p class="m-0 p-1" *ngIf="addclientform.get('name')?.errors?.['maxlength']">Client Name must be less than 400 characters </p>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="my-2">
-                <label for="phoneNumber">Phone Number</label>
+                <label for="phoneNumber">رقم الهاتف</label>
                 <input formControlName="phoneNumber" type="text" id="phoneNumber" name="phoneNumber" class="form-control" maxlength="11">
                 <div *ngIf="addclientform.get('phoneNumber')?.touched && addclientform.get('phoneNumber')?.errors" class="alert alert-danger p-0 mt-1">
                     <p class="m-0 p-1" *ngIf="addclientform.get('phoneNumber')?.errors?.['maxlength']">Phone Number must be 11 characters </p>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="my-2">
-                <label for="address">Address</label>
+                <label for="address">العنوان</label>
                 <input formControlName="address" type="text" id="address" name="address" class="form-control" maxlength="300">
                 <div *ngIf="addclientform.get('address')?.touched && addclientform.get('address')?.errors" class="alert alert-danger p-0 mt-1">
                     <p class="m-0 p-1" *ngIf="addclientform.get('address')?.errors?.['maxlength']">Address must be less than 700 characters </p>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <button [disabled]="addclientform.invalid" class="bg-main btn text-white ms-auto mt-3 d-block">
-                <span *ngIf="!isloading">Edit</span>
+                <span *ngIf="!isloading">إضافه</span>
                 <i *ngIf="isloading" class="fas fa-spinner fa-spin ms-2"></i>
             </button>
         </form>

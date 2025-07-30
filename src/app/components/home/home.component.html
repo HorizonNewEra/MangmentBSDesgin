@@ -1,4 +1,8 @@
 <!-- <h2 class="text-center my-3">الأجندة</h2> -->
+ <div *ngIf="isloding"
+    class="loadingscreen position-fixed z-3 top-0 bottom-0 start-0 end-0 bg-white d-flex justify-content-center align-items-center">
+    <span class="loader"></span>
+</div>
 <br>
 <br>
 <div class="row text-center justify-content-center">
@@ -38,8 +42,8 @@
                         <th>اليوم</th>
                         <th> اسم العميل</th>
                         <th> رقم الموبايل </th>
-                        <th>عنوان العميل </th>
-                        <th>الكميه</th>
+                        <th>اسم المبني</th>
+                        <th>قيمة القسط</th>
                         <th>تفاصيل</th>
                     </tr>
                 </thead>

@@ -81,7 +81,6 @@
                     <tr>
                         <th>الكميه </th>
                         <th> تاريخ الاستحقاق</th>
-                        <th>الدفع</th>
                         <th>تاريخ الدفع </th>
                         <th>تفاصيل</th>
                     </tr>
@@ -90,7 +89,6 @@
                     <tr *ngFor="let installment of paymentdetails.installments; let i = index">
                         <td>{{ installment.amount }}</td>
                         <td>{{ installment.dueDateString }}</td>
-                        <td>{{ installment.isPaid }}</td>
                         <td>{{ installment.paidDateString }}</td>
                         <td><button class="btn btn-info" [routerLink]="['/installmentdetails',installment.id]"><i
                                     class="fa-solid fa-circle-info"></i> تفاصيل </button></td>

@@ -35,9 +35,11 @@ export class BuildingAddComponent {
 
     this.isloading = true;
     if (dataform.valid) {
+      console.log(this.addbuildingformdata);
       this._AuthService.AddBuilding(this.addbuildingformdata).subscribe({
         next: (response) => {
-          if (response.status === 200) {
+          console.log(response);
+          if (response.status === "200") {
             this._Router.navigate(['/building']);
             this.isloading = false;
           } else {

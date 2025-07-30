@@ -21,3 +21,7 @@ export interface InstallmentDetails {
     flatSize: number,
     sellingPrice: number
 }
+
+export interface PayInstallment {
+    id: number
+}

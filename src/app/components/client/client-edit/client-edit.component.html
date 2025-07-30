@@ -1,13 +1,13 @@
 <div class="row my-4 ">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-        <h1 class="text-center">Edit Cliet</h1>
+        <h1 class="text-center">تعديل عميل</h1>
         <div *ngIf="apierror" class="alert alert-danger p-0 mt-1">
             <p class="m-0 p-1">{{apierror}}</p>
         </div>
         <form [formGroup]="editclientform" (ngSubmit)="editclient(editclientform)">
             <div class="my-2">
-                <label for="name">Client Name</label>
+                <label for="name">اسم العميل</label>
                 <input formControlName="name" type="text" id="name" name="name" class="form-control" maxlength="100">
                 <div *ngIf="editclientform.get('name')?.touched && editclientform.get('name')?.errors" class="alert alert-danger p-0 mt-1">
                     <p class="m-0 p-1" *ngIf="editclientform.get('name')?.errors?.['maxlength']">Client Name must be less than 400 characters </p>
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="my-2">
-                <label for="phoneNumber">Phone Number</label>
+                <label for="phoneNumber">رقم الهاتف</label>
                 <input formControlName="phoneNumber" type="text" id="phoneNumber" name="phoneNumber" class="form-control" maxlength="11">
                 <div *ngIf="editclientform.get('phoneNumber')?.touched && editclientform.get('phoneNumber')?.errors" class="alert alert-danger p-0 mt-1">
                     <p class="m-0 p-1" *ngIf="editclientform.get('phoneNumber')?.errors?.['maxlength']">Phone Number must be 11 characters </p>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="my-2">
-                <label for="address">Address</label>
+                <label for="address">العنوان</label>
                 <input formControlName="address" type="text" id="address" name="address" class="form-control" maxlength="300">
                 <div *ngIf="editclientform.get('address')?.touched && editclientform.get('address')?.errors" class="alert alert-danger p-0 mt-1">
                     <p class="m-0 p-1" *ngIf="editclientform.get('address')?.errors?.['maxlength']">Address must be less than 700 characters </p>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <button [disabled]="editclientform.invalid" class="bg-main btn text-white ms-auto mt-3 d-block">
-                <span *ngIf="!isloading">Edit</span>
+                <span *ngIf="!isloading">تعديل</span>
                 <i *ngIf="isloading" class="fas fa-spinner fa-spin ms-2"></i>
             </button>
         </form>

@@ -32,7 +32,7 @@ export class ClientAddComponent {
 
     this.isloading = true;
     if (dataform.valid) {
-      this._AuthService.ClientEdit(this.addclientformdata).subscribe({
+      this._AuthService.ClientAdd(this.addclientformdata).subscribe({
         next: (response) => {
           if (response.status === "200") {
             this._Router.navigate(['/client']);
