@@ -26,7 +26,6 @@ export class ClientTableComponent implements OnInit {
     getClientTableView() {
       this.ClientService.GetclientTableView(this.view).subscribe({
         next: (response:Clienttable) => {
-          console.log(response);
           this.Clienttableview = response;
           if (response.data.length > 0) {
             this.clientdata = response.data;

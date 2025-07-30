@@ -37,11 +37,10 @@ export class InstallmentDetailsComponent implements OnInit {
     });
   }
   payInstallment(idd:number) {
+     this.isloding = true;
     this.data={id: idd}
-    console.log(this.data)
-    this._InstallmentgService.PayInstallment(idd).subscribe({
+    this._InstallmentgService.PayInstallment(this.data).subscribe({
       next: (response: any) => {
-        console.log(response)
         if (response.status === "200") {
           alert('تم دفع القسط')
           this.getInstallmentDetails();
@@ -49,10 +48,12 @@ export class InstallmentDetailsComponent implements OnInit {
         else {
           alert('خطأ في الدفع, الرجاء المحاولة لاحقا');
         }
+         this.isloding = false;
       },
       error: (err: any) => {
         console.log(err)
         this.apierror = err.error.message;
+         this.isloding = false;
       }
     });
   }

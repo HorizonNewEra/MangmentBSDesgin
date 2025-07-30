@@ -16,11 +16,12 @@ export interface ClientDetails {
   id: string,
   name: string,
   phoneNumber: string,
-  address: string,
+  adress: string,
   clientPayments: ClientPayment[]
   clientFlats: clientflats[]
 }
 export interface ClientPayment {
+  paymentId:number,
   paymentMethod: string,
   description: string,
   startPrice: number,
@@ -31,6 +32,7 @@ export interface ClientPayment {
   collectingDay: number
 }
 export interface clientflats {
+  flatId:number,
   buildingName: string,
   flatNumber: number,
   floor: number,

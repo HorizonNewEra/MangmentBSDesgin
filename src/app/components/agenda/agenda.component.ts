@@ -27,6 +27,7 @@ ngOnInit() {
     this.Year = parseInt(selectedValue);
   }
   getAgenda() {
+    this.isloding = true;
     this.paymentService.GetAgenda(this.Month,this.Year).subscribe({
       next: (response) => {
         this.agendaView = response;
@@ -39,9 +40,4 @@ ngOnInit() {
       }
     });
   }
-  RunAgenda() {
-
-    this.getAgenda();
-  }
-
 }
