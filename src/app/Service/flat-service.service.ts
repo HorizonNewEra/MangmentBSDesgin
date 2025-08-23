@@ -9,7 +9,7 @@ import { FlatDetails } from '../Interfaces/flat-interfaces'; // تأكد من و
   providedIn: 'root'
 })
 export class FlatServiceService {
-  BaseUrl: string = 'http://mangmentbs.runasp.net';
+  BaseUrl: string = 'http://localhost:2020';
   header = new HttpHeaders({ 'Content-Type': 'application/json', 'accept': '*/*', 'Authorization': `Bearer ${localStorage.getItem('usertoken')}` });
   constructor(private _HttpClient: HttpClient) { }
   AddFlat(data: AddFlat): Observable<any> {

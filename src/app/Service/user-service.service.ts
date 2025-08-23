@@ -9,7 +9,7 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class UserServiceService {
-  BaseUrl: string = 'http://mangmentbs.runasp.net';
+  BaseUrl: string = 'http://localhost:2020';
   header = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('usertoken')}` });
   userdata=new BehaviorSubject<userTokenClaims | null>(null);
   constructor(private _HttpClient: HttpClient, private router: Router) { 

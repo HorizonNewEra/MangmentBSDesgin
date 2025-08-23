@@ -8,7 +8,7 @@ import { InstallmentDetails, PayInstallment } from '../Interfaces/installment-in
 })
 export class InstallmentServiceService {
  header = new HttpHeaders({ 'Content-Type': 'application/json','accept': '*/*', 'Authorization': `Bearer ${localStorage.getItem('usertoken')}` });
-    BaseUrl: string = 'http://mangmentbs.runasp.net';
+    BaseUrl: string = 'http://localhost:2020';
    constructor(private http: HttpClient) {}
   getInstallmentDetails(installmentId: number): Observable<InstallmentDetails> {
     return this.http.get<InstallmentDetails>(`${this.BaseUrl}/api/Installment/InstallmentDetails/${installmentId}`, { headers: this.header });

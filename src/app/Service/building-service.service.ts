@@ -8,7 +8,7 @@ import { TableViewParams } from '../Interfaces/helpers';
   providedIn: 'root'
 })
 export class BuildingServiceService {
-  BaseUrl: string = 'http://mangmentbs.runasp.net';
+  BaseUrl: string = 'http://localhost:2020';
   header = new HttpHeaders({ 'Content-Type': 'application/json','accept': '*/*', 'Authorization': `Bearer ${localStorage.getItem('usertoken')}` });
   constructor(private _HttpClient: HttpClient) { }
 

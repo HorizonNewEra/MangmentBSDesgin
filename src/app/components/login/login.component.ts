@@ -37,6 +37,7 @@ export class LoginComponent {
           }
         },
         error: (err: any) => {
+          console.log(err);
           this.isloading = false;
           this.apierror = err.error.message;
         }
